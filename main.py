@@ -4,13 +4,21 @@ def createTable(conn):
     cursor = conn.cursor()
 
     cursor.execute(""" 
-            CREATE TABLE IF NOT EXISTS students (
+        CREATE TABLE IF NOT EXISTS students (
             student_id SERIAL PRIMARY KEY,
             first_name TEXT NOT NULL,
             last_name TEXT NOT NULL,
             email TEXT NOT NULL UNIQUE,
             enrollment_date DATE
-        )""")
+        )"""
+    )
+
+    cursor.execute("""
+        INSERT INTO students (first_name, last_name, email, enrollment_date) VALUES
+            ('John', 'Doe', 'john.doe@example.com', '2023-09-01'),
+            ('Jane', 'Smith', 'jane.smith@example.com', '2023-09-01'),
+            ('Jim', 'Beam', 'jim.beam@example.com', '2023-09-02');
+    """)
 
     conn.commit()
     cursor.close()
@@ -67,20 +75,13 @@ def main():
 
     createTable(conn)
 
-    print("Current table")
     getAllStudents(conn)
 
     addStudent(conn, "Dilman", "Mundi", "dilmanmundi@cmail.carleton.ca", "2025-01-01")
-    print("Adding a student")
-    getAllStudents(conn)
 
     updateStudentEmail(conn, 2, "jane2023@example.com")
-    print("Updating Jane's email")
-    getAllStudents(conn)
 
     deleteStudent(conn, 3)
-    print("deleting student Jim")
-    getAllStudents(conn)
 
     conn.close()
 
