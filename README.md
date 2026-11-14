@@ -7,4 +7,4 @@ and type in the correct password.
 
 Then run the main.py file in a different compiler which should connect to the pgadmin database and successfully complete its functions as shown in the video
 
-Demonstration video: https://www.youtube.com/watch?v=93l-NYQ9xy0&feature=youtu.be
+Demonstration video: https://www.youtube.com/watch?v=93l-NYQ9xy0
